@@ -15,7 +15,6 @@ class Node
   end
 
   def propose_state(state)
-    return 'Not connected to any network' unless network
     return "Status offline can't propose state" unless self.is_online
     network.notify(self, state)
   end

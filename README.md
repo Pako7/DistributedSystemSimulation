@@ -36,20 +36,17 @@ require './main.rb'
 node1 = Node.new(1)
 node2 = Node.new(2)
 node3 = Node.new(3)
-node4 = Node.new(4)
 ```
 - Default state is 0
 ```ruby
 puts node1.state
 puts node2.state
 puts node3.state
-puts node4.state
 ```
 ### Add nodes to same network
 ```ruby
 node1.add_neighbor(node2)
 node2.add_neighbor(node3)
-node3.add_neighbor(node4)
 ```
 ### Propose state for nodes of same network
 - Propose state
@@ -61,32 +58,29 @@ node2.propose_state(2)
 puts node1.state
 puts node2.state
 puts node3.state
-puts node4.state
 ```
 ### See logs
 ```ruby
 puts node1.retrieve_log
 puts node2.retrieve_log
 puts node3.retrieve_log
-puts node4.retrieve_log
 ```
 ### Simulate partition
 ```ruby
 node3.simulate_partition([node1])
 ```
-### Consideration
-#### node1 can't propose a state after simulate_partition
+### Considerations
+#### `node1` can't propose a state after simulate_partition neither receive update
 - (Execute to see)
 ```ruby
 node1.propose_state(1)
 ```
-
-#### Offline node can't propose state neither receive update
 ```ruby
-node2.is_online = false
-node2.propose_state(8)
-```
-```ruby
-node4.propose_state(10)
+node2.propose_state(3)
 ```
 #### Can check states and logs again to validate the information
+```ruby
+puts node1.retrieve_log
+puts node2.retrieve_log
+puts node3.retrieve_log
+```

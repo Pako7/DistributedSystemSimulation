@@ -5,12 +5,13 @@ class Network
 
   def attach(node)
     node.network = self
+    node.is_online = true
     @nodes << node unless @nodes.include?(node)
   end
 
   def detach(nodes_list)
     nodes_list.each do |node|
-      node.network = nil
+      node.is_online = false
       @nodes.delete(node)
     end
     true
